@@ -1,6 +1,41 @@
 var net = require('net');
 var readline = require('readline');
 
+module.exports = {
+  connect: connect
+};
+
+function connect(port, address, callback) {
+  if (typeof address === "function" && typeof callback === "undefined") {
+    callback = address;
+    address = "127.0.0.1";
+  }
+  if (!callback) return connect.bind(this, port, address);
+  if (typeof port !== "number") throw new TypeError("port must be number");
+  if (typeof address !== "string") throw new TypeError("address must be string");
+  if (typeof callback !== "function") throw new TypeError("callback must be function");
+
+  var stream = net.connect(port, address);
+
+  stream.on("error", finish);
+  stream.on("connect", onConnect);
+
+  var done = false;
+  function finish(err, socket) {
+    if (done) return;
+    done = true;
+    stream.removeListener("error", finish);
+    stream.removeListener("connect", onConnect);
+    callback(err, socket);
+  }
+
+  function onConnect() {
+    finish(null, wrapStream(stream));
+  }
+
+  return stream;
+}
+
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout

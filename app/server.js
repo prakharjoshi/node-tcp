@@ -1,5 +1,19 @@
 var net = require('net');
 
+module.exports = {
+  createServer: createServer
+};
+
+function createServer(port, address, onConnection) {
+  if (typeof address === "function" && typeof onConnection === "undefined") {
+    onConnection = address;
+    address = "127.0.0.1";
+  }
+  if (typeof port !== "number") throw new TypeError("port must be number");
+  if (typeof address !== "string") throw new TypeError("address must be string");
+  if (typeof onConnection !== "function") throw new TypeError("onConnection must be function");
+}
+
 var server = net.createServer();
 server.on('connection', handleConnection);
 
