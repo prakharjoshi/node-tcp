@@ -52,10 +52,10 @@ function handleConnection(socket) {
   function onConnClose() {
     console.log('connection from %s closed', socket.name);
     if (socket === clientSockets[0] && clientSockets.length==2){
-      clientSockets[1].write("Seems like your friend is offline. "+ socket.name + " left the chat.\n");
+      clientSockets[1].write("Seems like your friend is offline and can't chat with you chat.\n");
     }
     else{
-      clientSockets[0].write("Seems like your friend is offline. "+ socket.name + " left the chat.\n")
+      clientSockets[0].write("Seems like your friend is offline and can't chat with you chat.\n")
     }
     clientSockets.splice(clientSockets.indexOf(socket), 1);
   }
