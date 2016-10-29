@@ -12,22 +12,29 @@ function createServer(port, address, onConnection) {
   if (typeof port !== "number") throw new TypeError("port must be number");
   if (typeof address !== "string") throw new TypeError("address must be string");
   if (typeof onConnection !== "function") throw new TypeError("onConnection must be function");
-}
 
-var server = net.createServer();
-server.on('connection', handleConnection);
-
-server.listen(
-  9000,
-  function() { 
+  var server = net.createServer();
+  server.on("connection", handleConnection);
+  server.listen(
+  port,
+  address,
+  function() {
     console.log("KEEP CALM THE SERVER IS UP AT 9000\n");
   });
+  return server;
+}
+
+server = createServer(9000, "127.0.0.1", handleConnection);
 
 var clientSockets = [];
 
 function startRelay (sourceSocket, destSocket) {
-    sourceSocket.on('data', function (data) {
+    var destSocketListener = function (data) {
       destSocket.write(data);
+    };
+    sourceSocket.on('data', destSocketListener);
+    destSocket.on('close', function () {
+      sourceSocket.removeListener('data', destSocketListener);
     });
   }
 
