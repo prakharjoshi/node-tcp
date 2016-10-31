@@ -30,6 +30,11 @@ client.on('data', function(data) {
 	console.log('Your friend wrote: ' + data);
 });
 
-client.on('close', function() {
+client.once('close', function() {
 	console.log('KEEP CALM THE SERVER IS DOWN!! TRY IT AFTER SOME TIME.');
 });
+
+client.on('error', function(err){
+  console.log('Server is down !!');
+});
+
