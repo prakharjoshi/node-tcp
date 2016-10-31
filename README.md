@@ -98,6 +98,6 @@ KEEP CALM THE SERVER IS DOWN!! TRY IT AFTER SOME TIME.
 
 For running the tests you need to come back to base folder that is `node-tcp` and run
 ```
-mocha
+npm test
 ```
 This will trigger the test file and will run all the test cases present in that file.
