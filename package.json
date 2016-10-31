@@ -1,0 +1,31 @@
+{
+  "name": "node-tcp",
+  "version": "1.0.0",
+  "description": "This is a basic tcp socket connect built on node js libarary. It connects 2 clients and trasfer messages between two clients until they are connect to each other. Once a client is disconnected, the other one will be informed that now you can't exchanges data stream with the other client. If the client again connects to the server then again both the clients can exchange the data streams between them.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakharjoshi/node-tcp.git"
+  },
+  "keywords": [
+    "['tcp'",
+    "'sockets']"
+  ],
+  "author": "Prakhar Joshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prakharjoshi/node-tcp/issues"
+  },
+  "homepage": "https://github.com/prakharjoshi/node-tcp#readme"
+}
