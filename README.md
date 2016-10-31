@@ -1,5 +1,19 @@
+## Node TCP Client Server
+
 This is a basic tcp socket connect built on node js libarary. It connects 2 clients and trasfer messages between two clients until they are connect to each other. Once a client is disconnected, the other one will be informed that now you can't exchanges data stream with the other client.
 If the client again connects to the server then again both the clients can exchange the data streams between them.
+
+## Quick Start
+
+1. Clone this repo and install npm packages using `npm install`.
+2. Go to app directory and run server.js using `node server.js`.
+3. In different terminal go to app directory and run client using 'client.js'.
+4. Follow point 4 to run another client.
+5. Start sending messages from one client to another.
+6. Exit client/server using `ctrl + c`.
+7. Run the tests using `npm test`.
+
+## Specification
 
 This module is built in the manner that there is a centralized server running on a port.
 To run that server go to app directory
